@@ -144,7 +144,7 @@ void Init_GAMER( int *argc, char ***argv )
    {
       if ( Init_DerivedField_User_Ptr != NULL )
          Init_DerivedField_User_Ptr();
-
+   
       else
          Aux_Error( ERROR_INFO, "Init_DerivedField_User_Ptr == NULL for OPT__OUTPUT_USER_FIELD !!\n" );
    }
