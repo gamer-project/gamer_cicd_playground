@@ -10,7 +10,7 @@ User guides of this script are provided in the following link.
 # Packages
 ####################################################################################################
 import argparse
-import logging
+import logging   
 import os
 import sys
 import re
@@ -22,7 +22,7 @@ import ctypes
 # Validation
 ####################################################################################################
 # Check the Python version
-if sys.version_info[0] < 3 or sys.version_info[1] < 5:
+if sys.version_info[0] < 3 or sys.version_info[1] < 5:  
     raise BaseException("Python 3.5 or later is required.")
 
 
@@ -33,11 +33,11 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 5:
 NONE_STR = "OFF"
 
 CLOSE_DIST  = 2
-PRINT_WIDTH = 100
+PRINT_WIDTH = 100 
 
 GAMER_CONFIG_DIR     = os.path.join("..", "configs")
 GAMER_MAKE_BASE      = "Makefile_base"
-GAMER_MAKE_OUT       = "Makefile"
+GAMER_MAKE_OUT       = "Makefile" 
 GAMER_LOCAL_SETTING  = ".local_settings"
 GAMER_GLOBAL_SETTING = os.path.expanduser("~/.config/gamer/global_settings")
 GAMER_DESCRIPTION    = "Prepare a customized Makefile for GAMER.\n"\
@@ -66,7 +66,7 @@ class CustomFormatter( logging.Formatter ):
     ENDC      = "\033[0m"
     BOLD      = "\033[1m"
     UNDERLINE = "\033[4m"
-
+  
     CONSOLE_FORMAT = "%(levelname)-8s: %(message)s"
     FORMATS = { logging.DEBUG   : HEADER  + CONSOLE_FORMAT + ENDC,
                 logging.INFO    : ENDC    + "%(message)s"  + ENDC,
@@ -119,7 +119,7 @@ class ArgumentParser( argparse.ArgumentParser ):
             if arg[0] != "-":
                 msg += "Unrecognized positional argument: %s\n"%(arg)
                 continue
-            arg = arg.split("=")[0]     # separate the assigned value.
+            arg = arg.split("=")[0]     # separate the assigned value.  
             min_dist = 100000
             pos_key = ""
             for key in self.gamer_names:

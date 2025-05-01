@@ -8,22 +8,22 @@
 // Description :  Put everything you want to do before terminating the program right here
 //
 // Note        :  1. Function pointer "End_User_Ptr" may be set by a test problem initializer
-//
-// Parameter   :  None
+// 
+// Parameter   :  None 
 //-------------------------------------------------------------------------------------------------------
 void End_GAMER()
 {
-
+  
    if ( MPI_Rank == 0 )    Aux_Message( stdout, "%s ...\n", __FUNCTION__ );
 
 
-#  ifdef TIMING
+#  ifdef TIMING  
    Aux_DeleteTimer();
 #  endif
 
    End_MemFree();
 
-   if ( End_User_Ptr != NULL )   End_User_Ptr();
+   if ( End_User_Ptr != NULL )   End_User_Ptr();  
 
 #  ifdef SUPPORT_FFTW
    End_FFTW();
@@ -58,10 +58,11 @@ void End_GAMER()
    {
       Aux_Message( stdout, "%s ... done\n", __FUNCTION__ );
       Aux_Message( stdout, "\n\n~ GAME OVER ~\n\n\n" );
-   }
+   } 
 
    MPI_Finalize();
 
    exit( 0 );
 
 } // FUNCTION : End_GAMER
+
