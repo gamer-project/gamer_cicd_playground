@@ -260,7 +260,7 @@ struct AMR_t
 
       if ( NewPID > MAX_PATCH-1 )
          Aux_Error( ERROR_INFO, "exceed MAX_PATCH (%d) => please reset it in the Makefile !!\n", MAX_PATCH );
-
+ 
 //    allocate new patches if there are no inactive patches
       if ( patch[0][lv][NewPID] == NULL )
       {
@@ -299,9 +299,9 @@ struct AMR_t
                                          BoxScale, BoxEdgeL, dh[TOP_LEVEL], InitPtrAsNull_No );
       } // if ( patch[0][lv][NewPID] == NULL ) ... else ...
 
-      num[lv] ++;
+      num[lv] ++; 
 
-   } // METHOD : pnew
+   } // METHOD : pnew 
 
 
 
