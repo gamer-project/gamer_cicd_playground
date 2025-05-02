@@ -3,8 +3,10 @@ DISABLE_LINTERS: PYTHON_BLACK,C_CLANG_FORMAT,CPP_CLANG_FORMAT
 
 FILTER_REGEX_INCLUDE: (src/|include/)
 
-C_CPPLINT_ARGUMENTS: --filter=-whitespace/indent,-whitespace/braces,-legal/copyright --linelength=120 --counting=detailed
-CPP_CPPLINT_ARGUMENTS: --filter=-whitespace/indent,-whitespace/braces,-legal/copyright --linelength=120 --counting=detailed
+C_CPPCHECK_ARGUMENTS: --force --check-level=exhaustive
+CPP_CPPCHECK_ARGUMENTS: --force --check-level=exhaustive
+C_CPPLINT_ARGUMENTS: --filter=-whitespace/indent,-whitespace/braces,-whitespace/parens,-whitespace/operators,-whitespace/comments,-whitespace/blank_line,-legal --linelength=120 --counting=detailed
+CPP_CPPLINT_ARGUMENTS: --filter=-whitespace/indent,-whitespace/braces,-whitespace/parens,-whitespace/operators,-whitespace/comments,-whitespace/blank_line,-legal --linelength=120 --counting=detailed
 
 SHOW_ELAPSED_TIME: true
 EMAIL_REPORTER: false
