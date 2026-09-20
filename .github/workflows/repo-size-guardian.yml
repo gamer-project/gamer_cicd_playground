@@ -2,9 +2,25 @@ name: Repo Size Guardian
 on:
   pull_request:
 
+# Four jobs invoking the same action over the identical set of commits, to
+# get maximum signal from a single test PR:
+#   1. scan-history-error   - the real production gate (history + fail_on=error)
+#   2. scan-diff-mode       - same policy/commits, scan_mode=diff instead of
+#                             history, to show a file added-then-deleted
+#                             within the PR is caught by (1) but NOT by this
+#   3. warn-rule-fail-on-error - an isolated warn-severity rule; fail_on
+#                             stays "error" so a pure warn does NOT fail
+#   4. warn-rule-fail-on-warn  - the same warn-severity rule, but
+#                             fail_on="warn", which DOES fail the job
+#
+# Jobs expected to fail get continue-on-error: true so all four results are
+# visible on the PR at once instead of GitHub hiding later jobs behind an
+# early red X.
 jobs:
-  scan:
+  scan-history-error:
+    name: "history mode, fail_on=error (production gate)"
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
         with:
@@ -12,4 +28,46 @@ jobs:
       - uses: technic960183/repo-size-guardian@claude
         with:
           policy_path: ".github/repo-size-guardian.yml"
+          scan_mode: "history"
           fail_on: "error"
+
+  scan-diff-mode:
+    name: "diff mode, fail_on=error (same commits, net diff only)"
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: technic960183/repo-size-guardian@claude
+        with:
+          policy_path: ".github/repo-size-guardian.yml"
+          scan_mode: "diff"
+          fail_on: "error"
+
+  warn-rule-fail-on-error:
+    name: "warn-only rule, fail_on=error (expected to stay green)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: technic960183/repo-size-guardian@claude
+        with:
+          policy_path: ".github/repo-size-guardian-warn-demo.yml"
+          scan_mode: "history"
+          fail_on: "error"
+
+  warn-rule-fail-on-warn:
+    name: "warn-only rule, fail_on=warn (expected to fail)"
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: technic960183/repo-size-guardian@claude
+        with:
+          policy_path: ".github/repo-size-guardian-warn-demo.yml"
+          scan_mode: "history"
+          fail_on: "warn"
