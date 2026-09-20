@@ -1,3 +1,7 @@
+ignore:
+  globs:
+    - "ci-test/repo-size-guardian/fixtures/**"
+
 disallow:
   extensions:
     - "ipynb"

@@ -1,0 +1,11 @@
+# Isolated demo policy used only by the warn-rule-fail-on-* jobs. Deliberately
+# has no disallow/thresholds/ignore of its own, so the ONLY thing it can ever
+# flag is the one rule below -- this keeps the fail_on comparison clean.
+rules:
+  - id: large-logs-warn
+    description: "Warn (don't block) on log files over 50 KB - rollout demo"
+    match:
+      extensions:
+        - "log"
+    size_over_kb: 50
+    action: warn
