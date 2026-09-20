@@ -1,0 +1,15 @@
+name: Repo Size Guardian
+on:
+  pull_request:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: technic960183/repo-size-guardian@claude
+        with:
+          policy_path: ".github/repo-size-guardian.yml"
+          fail_on: "error"

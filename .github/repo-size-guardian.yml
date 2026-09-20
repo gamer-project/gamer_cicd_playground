@@ -1,0 +1,7 @@
+disallow:
+  extensions:
+    - "ipynb"
+
+thresholds:
+  max_text_size_kb: 200
+  max_binary_size_kb: 100
