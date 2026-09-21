@@ -13,7 +13,7 @@
 
 **GAMER** is a **G**PU-accelerated **A**daptive **ME**sh **R**efinement code for astrophysical simulations. It delivers high computational performance and supports a rich set of physics modules.
 
-## Getting Started
+## Getting Started 0.0
 
 - [**Quick Start**](https://github.com/gamer-project/gamer/wiki/Quick-Start): Step-by-step guide to quickly set up and run GAMER.
 - [**Installation Guide**](https://github.com/gamer-project/gamer/wiki/Installation): Detailed instructions for installing GAMER on various platforms.
